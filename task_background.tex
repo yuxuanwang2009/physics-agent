@@ -1,0 +1,463 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{bm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+\title{Task-Background Document:\\ From the Free-Fermion Action to the $G$--$\Sigma$ and\\ Coadjoint-Orbit Bosonization Actions}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent
+This document fixes the starting point and the two intermediate targets used
+throughout the project. Section~\ref{sec:gsigma} derives the bilocal
+($G$--$\Sigma$) action of free, gapless, nonrelativistic fermions from the
+microscopic coherent-state action, and identifies its saddle point. Section~\ref{sec:coadjoint}
+derives the coadjoint-orbit bosonization action from the same microscopic action,
+following the Appendix of Ye and Wang, \emph{Phys.\ Rev.\ B} \textbf{112}, 035113
+(2025). The conventions in \S\ref{sec:prelim} are common to both.
+
+\section{From the free-fermion action to the \texorpdfstring{$G$--$\Sigma$}{G-Sigma} action}
+\label{sec:gsigma}
+
+\subsection{Preliminaries and conventions}
+\label{sec:prelim}
+
+We work with spinless nonrelativistic fermions in $d$ spatial dimensions at
+inverse temperature $\beta$, in the imaginary-time coherent-state path integral.
+The dynamical variables are Grassmann fields $\psi(\bm{x},\tau)$, $\bar{\psi}(\bm{x},\tau)$
+that are antiperiodic in imaginary time, $\psi(\bm{x},\tau+\beta)=-\psi(\bm{x},\tau)$.
+
+To keep the bilocal structure visible we use a collective coordinate
+$1 \equiv (\bm{x}_1,\tau_1)$, with
+\begin{equation}
+\int \mathrm{d} 1 \;\equiv\; \int_0^\beta \mathrm{d}\tau_1 \int \mathrm{d}^d x_1 ,
+\qquad
+\delta(1,2) \;\equiv\; \delta(\tau_1-\tau_2)\,\delta^d(\bm{x}_1-\bm{x}_2).
+\end{equation}
+The single-particle Hamiltonian is $\hat h = \varepsilon(-i\bm{\nabla})-\mu$, with
+band dispersion $\varepsilon(\bm{k})$, chemical potential $\mu$, and
+$\xi_{\bm{k}}\coloneqq \varepsilon(\bm{k})-\mu$. ``Gapless'' means the Fermi surface
+$\{\bm{k}:\xi_{\bm{k}}=0\}$ is nonempty and codimension one. The microscopic action is
+\begin{equation}
+\label{eq:S0}
+S_0[\bar{\psi},\psi]
+= \int \mathrm{d} 1\;\bar{\psi}(1)\,\big(\partial_{\tau_1}+\hat h_1\big)\,\psi(1).
+\end{equation}
+
+It is convenient to write \eqref{eq:S0} as a bilinear $S_0=-\bar{\psi}\,G_0^{-1}\,\psi$
+in the free inverse propagator, defined as the operator with kernel
+\begin{equation}
+\label{eq:G0inv}
+G_0^{-1}(1,2) \;\coloneqq\; -\big(\partial_{\tau_1}+\hat h_1\big)\,\delta(1,2).
+\end{equation}
+The sign in \eqref{eq:G0inv} is chosen so that the Matsubara propagator takes
+its standard form: with $\partial_\tau \mapsto -i\omega_n$ on antiperiodic
+frequencies $\omega_n=(2n+1)\pi/\beta$,
+\begin{equation}
+\label{eq:G0matsubara}
+G_0(\bm{k},i\omega_n) = \frac{1}{i\omega_n-\xi_{\bm{k}}}.
+\end{equation}
+We define traces of bilocal kernels by
+$\operatorname{Tr}(AB)\coloneqq \int \mathrm{d}1\,\mathrm{d}2\, A(1,2)\,B(2,1)$, and $\operatorname{Tr}\ln$ through its
+series. Throughout, $G_0$ denotes the free \emph{propagator}
+\eqref{eq:G0matsubara} and $G_0^{-1}$ the operator \eqref{eq:G0inv}; note
+$G_0^{-1}=-(\partial_\tau+\hat h)$ carries an explicit minus sign relative to
+$\partial_\tau+\hat h$.
+
+\subsection{The bilocal field, and why to introduce it}
+
+The low-energy excitations of a Fermi sea are neutral particle--hole pairs, not
+single fermions. Their natural carrier is the equal-time, and more generally the
+bilocal, two-point function $\bar{\psi}(2)\psi(1)$: smooth deformations of the
+occupied region of phase space are encoded in its fluctuations. We therefore
+promote the bilocal to an independent field rather than treating it as a
+composite of $\psi,\bar{\psi}$.
+
+Concretely, introduce a bosonic bilocal field $G(1,2)$ together with the
+constraint that it equal the microscopic bilinear,
+\begin{equation}
+\label{eq:Gdef}
+G(1,2) \;=\; -\,\psi(1)\,\bar{\psi}(2),
+\end{equation}
+where the minus sign is dictated by \eqref{eq:G0matsubara}: at the level of
+expectation values \eqref{eq:Gdef} gives
+$\langle G(1,2)\rangle=-\langle\psi(1)\bar{\psi}(2)\rangle=-\langle T_\tau\,\psi(1)\bar{\psi}(2)\rangle=G_0(1,2)$,
+the conventional Green's function. For an \emph{interacting} system this step is
+forced: a quartic interaction is decoupled by a field conjugate to a fermion
+bilinear, and $G(1,2)$ is the most general such collective field (it carries
+every particle--hole channel, not only the density). For the free system there
+is nothing to decouple, but the move still buys the essential thing --- it trades
+the Grassmann fields for a bosonic bilocal whose path integral is \emph{exact}
+and whose fluctuation spectrum is precisely the particle--hole continuum. That
+is the arena \S\ref{sec:coadjoint} reorganizes into geometric variables.
+
+\subsection{The self-energy as a Lagrange multiplier}
+
+We enforce \eqref{eq:Gdef} inside the path integral by a functional
+delta-function, represented through a second bilocal field $\Sigma(1,2)$ --- the
+self-energy --- integrated along the imaginary direction:
+\begin{equation}
+\label{eq:resolution}
+1 = \int \mathcal{D}G\,\mathcal{D}\Sigma\;
+\exp\!\Big(-\!\int \mathrm{d}1\,\mathrm{d}2\;\Sigma(2,1)\big[\,G(1,2)+\psi(1)\bar{\psi}(2)\,\big]\Big).
+\end{equation}
+The $\Sigma$-integral produces $\prod_{1,2}\delta\!\big(G(1,2)+\psi(1)\bar{\psi}(2)\big)$,
+which collapses to the constraint \eqref{eq:Gdef}; $\Sigma$ is the field conjugate
+to the bilocal, and will turn out to be the self-energy. Inserting
+\eqref{eq:resolution} into $Z=\int\mathcal{D}\bar{\psi}\,\mathcal{D}\psi\,e^{-S_0}$
+leaves the action quadratic in the fermions.
+
+\subsection{Integrating out the fermions}
+
+Collecting the fermion-bilinear terms from $-S_0$ and from
+\eqref{eq:resolution}, and using $\psi(1)\bar{\psi}(2)=-\bar{\psi}(2)\psi(1)$,
+\begin{equation}
+-S_0 - \int \Sigma(2,1)\,\psi(1)\bar{\psi}(2)
+= \bar{\psi}\,G_0^{-1}\,\psi + \bar{\psi}\,\Sigma\,\psi
+= \bar{\psi}\,\big(G_0^{-1}+\Sigma\big)\,\psi,
+\end{equation}
+with $\Sigma$ read as the operator of kernel $\Sigma(2,1)$. The Grassmann
+Gaussian integral $\int \mathcal{D}\bar{\psi}\,\mathcal{D}\psi\,
+\exp[\bar{\psi}(G_0^{-1}+\Sigma)\psi] = \det\!\big(G_0^{-1}+\Sigma\big)
+= e^{\operatorname{Tr}\ln(G_0^{-1}+\Sigma)}$ (an additive, $G,\Sigma$-independent constant is
+dropped) leaves a purely bosonic theory,
+\begin{equation}
+Z = \int \mathcal{D}G\,\mathcal{D}\Sigma\;
+\exp\!\big(\operatorname{Tr}\ln(G_0^{-1}+\Sigma) - \operatorname{Tr}(\Sigma G)\big),
+\qquad
+\operatorname{Tr}(\Sigma G)\coloneqq \int \mathrm{d}1\,\mathrm{d}2\;\Sigma(2,1)\,G(1,2).
+\end{equation}
+
+\subsection{The \texorpdfstring{$G$--$\Sigma$}{G-Sigma} action and its saddle point}
+
+We have arrived at the exact bilocal action
+\begin{equation}
+\label{eq:gsigma}
+\boxed{\;
+S[G,\Sigma] = -\operatorname{Tr}\ln\!\big(G_0^{-1}+\Sigma\big) + \operatorname{Tr}(\Sigma G) + S_{\mathrm{int}}[G]\;}
+\end{equation}
+where we have restored $S_{\mathrm{int}}[G]$, the interaction rewritten in terms
+of the bilocal (for a density--density interaction $\tfrac12\!\int V\,\rho\rho$
+this is a local functional of $G$); for the free fermions of interest
+$S_{\mathrm{int}}=0$. Equation \eqref{eq:gsigma} is the central object of this
+section: it is a \emph{bosonic} action, obtained without approximation, whose
+two fields are the propagator $G$ and the self-energy $\Sigma$.
+
+The saddle-point equations follow from $\delta S/\delta\Sigma=0$ and
+$\delta S/\delta G=0$. Using $\delta\,\operatorname{Tr}\ln(G_0^{-1}+\Sigma)=\operatorname{Tr}[(G_0^{-1}+\Sigma)^{-1}\delta\Sigma]$,
+\begin{align}
+\frac{\delta S}{\delta \Sigma(2,1)} &= -\,(G_0^{-1}+\Sigma)^{-1}(1,2) + G(1,2) = 0
+&&\Longrightarrow&& G = \big(G_0^{-1}+\Sigma\big)^{-1},
+\label{eq:dyson}\\[2pt]
+\frac{\delta S}{\delta G(1,2)} &= \Sigma(2,1) + \frac{\delta S_{\mathrm{int}}}{\delta G(1,2)} = 0
+&&\Longrightarrow&& \Sigma = -\,\frac{\delta S_{\mathrm{int}}}{\delta G}.
+\label{eq:selfenergy}
+\end{align}
+Equation \eqref{eq:dyson} is the Dyson equation $G^{-1}=G_0^{-1}+\Sigma$, and
+\eqref{eq:selfenergy} identifies $\Sigma$ as the self-energy generated by the
+interaction. For the free theory $S_{\mathrm{int}}=0$, so
+\begin{equation}
+\label{eq:freesaddle}
+\Sigma_\star = 0, \qquad G_\star = G_0,
+\end{equation}
+the free propagator \eqref{eq:G0matsubara}: the saddle of \eqref{eq:gsigma}
+exactly reproduces the microscopic two-point function, as it must.
+
+\begin{remark}
+The Dyson equation appears here as $G^{-1}=G_0^{-1}+\Sigma$ rather than the
+textbook $G^{-1}=G_0^{-1}-\Sigma$; the two differ only by the naming convention
+$\Sigma_{\text{here}}=-\Sigma_{\text{textbook}}$, fixed by the sign of the
+multiplier term in \eqref{eq:resolution}. Likewise the sign of $\operatorname{Tr}(\Sigma G)$ is
+correlated with the minus in the bilocal definition \eqref{eq:Gdef}. The physical
+content --- the Dyson equation and the saddle \eqref{eq:freesaddle} --- is
+convention-independent.
+\end{remark}
+
+\subsection{What the fluctuations are, and the bridge to \texorpdfstring{\S\ref{sec:coadjoint}}{Section 2}}
+\label{sec:bridge}
+
+The free saddle \eqref{eq:freesaddle} is trivial; the content is in the
+\emph{fluctuations} of $G$ about $G_0$, which \eqref{eq:gsigma} controls exactly.
+Writing $G=G_0+\delta G$ and eliminating $\Sigma$ through \eqref{eq:dyson}, the
+Gaussian fluctuations of $\delta G$ are the particle--hole pairs of the Fermi
+sea; their propagator is the free density--density response, and resumming them
+is the bilocal route to the random-phase approximation.
+
+The nonperturbative reorganization used in \S\ref{sec:coadjoint} rests on a
+structural fact about the saddle. At zero temperature and equal times the free
+propagator reduces to the occupation $n_{\bm{k}}\in\{0,1\}$, so as a single-particle
+operator $\hat n$ it is a \emph{projector}, $\hat n^2=\hat n$. The configurations
+of $G$ that the dynamics explores at low energy are not arbitrary: they are the
+images of $\hat n$ under canonical transformations of single-particle phase space
+(area-preserving deformations of the occupied region). That set is an orbit ---
+the coadjoint orbit of the group of canonical transformations through the
+Fermi-sea projector --- and restricting the $G$--$\Sigma$ action to it, then
+expanding $-\operatorname{Tr}\ln$ in gradients, produces the Berry-phase (Kirillov--Kostant--Souriau)
+and Hamiltonian terms of the bosonized action. This is the Fermi-liquid analogue
+of the $G$--$\Sigma\to$ Schwarzian reduction in SYK, with the coadjoint orbit of
+canonical transformations in place of $\mathrm{Diff}(S^1)$. Section~\ref{sec:coadjoint}
+carries this out.
+
+\section{From the free-fermion action to the coadjoint-orbit bosonization action}
+\label{sec:coadjoint}
+
+This section transcribes the derivation in the Appendix of Ye and Wang,
+\emph{Phys.\ Rev.\ B} \textbf{112}, 035113 (2025), specialized to zero magnetic
+field. The aim is the same as \S\ref{sec:gsigma} --- recast the free-fermion
+theory in collective bosonic variables --- but the route differs.
+Section~\ref{sec:gsigma} used the Grassmann coherent state and produced the
+bilocal $G$--$\Sigma$ action. Here we use the \emph{coherent state of the Fermi
+surface}: a group coherent state built from particle--hole deformations of the
+filled sea, the many-body analogue of a spin coherent state. The result is a
+manifestly geometric action whose target manifold is the coadjoint orbit of
+canonical transformations. Connecting this construction to the $G$--$\Sigma$
+action of \S\ref{sec:gsigma} is the project's task; this document establishes the
+two endpoints independently.
+
+\subsection{Phase space, star product, and Moyal bracket}
+
+Single-particle observables of a $d$-dimensional system are functions
+$F(\bm{x},\bm{p})$ on phase space (the paper works in $d=2$). The reason phase space is
+the right arena is that the collective variable will be the occupied region of
+$(\bm{x},\bm{p})$, and its deformations are canonical transformations. Operator
+multiplication maps not to pointwise multiplication of phase-space symbols but to
+the \emph{star product}
+\begin{equation}
+\label{eq:star}
+F\star G = F\,\exp\!\Big(\tfrac{i\hbar}{2}\big(\overleftarrow{\partial}_{\bm{x}}\overrightarrow{\partial}_{\bm{p}}-\overleftarrow{\partial}_{\bm{p}}\overrightarrow{\partial}_{\bm{x}}\big)\Big)\,G ,
+\end{equation}
+and operator commutators map to the \emph{Moyal bracket}
+\begin{equation}
+\label{eq:moyal}
+\{F,G\}_{\mathrm{M}} = -i\big(F\star G - G\star F\big)
+= 2F\,\sin\!\Big(\tfrac{\hbar}{2}\big(\overleftarrow{\partial}_{\bm{x}}\overrightarrow{\partial}_{\bm{p}}-\overleftarrow{\partial}_{\bm{p}}\overrightarrow{\partial}_{\bm{x}}\big)\Big)G .
+\end{equation}
+Functions $F$ equipped with $\{\cdot,\cdot\}_{\mathrm{M}}$ form the Moyal algebra
+$\mathfrak g$, the Lie algebra of canonical transformations; distribution
+functions $f$ live in the dual space $\mathfrak g^*$, paired with observables
+through
+\begin{equation}
+\label{eq:pairing}
+\langle f, F\rangle \coloneqq \int \frac{\mathrm{d}^dx\,\mathrm{d}^dp}{(2\pi)^d}\,
+f(\bm{x},\bm{p})\,F(\bm{x},\bm{p}).
+\end{equation}
+In the semiclassical regime $\hbar\,\bm{\nabla}_{\bm{x}}\!\cdot\!\bm{\nabla}_{\bm{p}}\ll 1$ the star
+product reduces to ordinary multiplication and the Moyal bracket to the Poisson
+bracket $\{F,G\}=\partial_{\bm{x}}F\!\cdot\!\partial_{\bm{p}}G-\partial_{\bm{p}}F\!\cdot\!\partial_{\bm{x}}G$.
+Keeping the full Moyal algebra (not its Poisson truncation) is what later
+distinguishes the quantum theory; we set $\hbar=1$ from here on except where shown.
+
+\subsection{The coadjoint orbit and the ground-state distribution}
+
+Canonical transformations form a group $\mathcal G$ whose Lie algebra is the Moyal
+algebra. Generated by $U=\exp(i\phi)$ with $\phi\in\mathfrak g$, they act on a
+distribution by conjugation,
+\begin{equation}
+\label{eq:orbit}
+f(\bm{x},\bm{p}) = U \star f_0 \star U^{-1} \;\equiv\; \mathrm{Ad}^*_U\, f_0 ,
+\end{equation}
+the coadjoint action on $\mathfrak g^*$. The base point is the ground-state
+distribution --- the filled Fermi sea,
+\begin{equation}
+\label{eq:f0}
+f_0(\bm{x},\bm{p}) = \Theta\!\big(p_F - |\bm{p}|\big),
+\end{equation}
+which is the phase-space (Wigner) image of the equal-time Fermi-sea projector
+$\hat n$ of \S\ref{sec:bridge}. The set of all distributions reachable from $f_0$,
+$\mathcal O_{f_0}=\{\mathrm{Ad}^*_U f_0 : U\in\mathcal G\}$, is the
+\emph{coadjoint orbit}; it is the target manifold of the effective theory. The
+physical content of \eqref{eq:orbit} is that low-energy configurations are exactly
+the area-preserving deformations of the occupied region --- no more, no less.
+
+\subsection{The target action}
+
+The bosonized action of the noninteracting Fermi surface is the sum of a
+Berry-phase term and a Hamiltonian term,
+\begin{equation}
+\label{eq:Saction}
+S[f] = S_{\mathrm{WZW}}[f] + S_H[f],\qquad
+S_{\mathrm{WZW}} = \int\!\mathrm{d} t\,\big\langle f_0,\, U^{-1}\!\star i\partial_t U\big\rangle,
+\qquad
+S_H = -\int\!\mathrm{d} t\,\big\langle f,\, \epsilon(\bm{p})\big\rangle,
+\end{equation}
+with $\epsilon(\bm{p})=\varepsilon_0(\bm{p})-\mu$ the dispersion measured from the
+chemical potential (the $\xi_{\bm{k}}$ of \S\ref{sec:prelim}). The WZW term is the
+path integral of the Kirillov--Kostant--Souriau symplectic form on the orbit ---
+the Berry phase accumulated as the occupied region deforms in time --- and $S_H$
+is the single-particle energy. Its equation of motion $\delta S/\delta f=0$ is the
+collisionless quantum Boltzmann equation $\partial_t f = \{\epsilon,f\}_{\mathrm{M}}$. The
+remainder of this section derives \eqref{eq:Saction} from the microscopic theory.
+
+\subsection{Coherent state of the Fermi surface and its path integral}
+
+Let $|\mathrm{FS}\rangle$ denote the filled Fermi sea. A coherent state is
+obtained by dressing it with particle--hole deformations generated by fermion
+bilinears,
+\begin{equation}
+\label{eq:cohstate}
+|\mathcal U\rangle = \hat{\mathcal U}\,|\mathrm{FS}\rangle,
+\qquad
+\hat{\mathcal U} = \exp\!\big(i\phi_{ij}\,c_i^\dagger c_j\big)
+\quad (i,j\in[1,L^d]),
+\end{equation}
+the many-body analogue of a spin coherent state. Via the algebra of bilinears the
+$\hat{\mathcal U}$ form a Lie group, and free-fermion evolution
+$e^{i\hat H\,\mathrm{d} t}$ commutes with the group average; Schur's lemma then gives a
+resolution of identity over the Haar measure $\mathrm{d}\mathcal U$ (up to a constant),
+\begin{equation}
+\label{eq:resolution2}
+\int \mathrm{d}\mathcal U\, |\mathcal U\rangle\langle\mathcal U| = 1 .
+\end{equation}
+Inserting \eqref{eq:resolution2} at every infinitesimal time slice --- exactly as
+for the spin path integral --- yields
+\begin{equation}
+\label{eq:Zpath}
+Z = \int \mathcal D\mathcal U(t)\,
+\exp\!\Big[\int \mathrm{d} t\;
+\big\langle \mathrm{FS}\big|\,\hat{\mathcal U}^{-1}
+\big(-\partial_t - i\hat H\big)\hat{\mathcal U}\,\big|\mathrm{FS}\big\rangle\Big].
+\end{equation}
+
+\subsection{Reduction to first-quantized operators}
+
+The exponent of \eqref{eq:Zpath} is a sum of nested commutators of bilinears.
+These close on themselves: for $\hat A=c_i^\dagger a_{ij}c_j$ and
+$\hat B=c_i^\dagger b_{ij}c_j$, fermion statistics give
+\begin{equation}
+\label{eq:bilinearcomm}
+[\hat A,\hat B] = c_i^\dagger\big(a_{ik}b_{kj}-b_{ik}a_{kj}\big)c_j
+= c_i^\dagger\big([\hat a,\hat b]\big)_{ij}c_j ,
+\qquad \langle i|\hat a|j\rangle \equiv a_{ij},
+\end{equation}
+so the commutator of two bilinears is the bilinear of the \emph{first-quantized}
+commutator. The many-body problem in the $2^N$-dimensional Fock space therefore
+collapses onto $N\times N$ first-quantized operators. Re-exponentiating the nested
+commutators,
+\begin{equation}
+\label{eq:iS}
+iS = \int \mathrm{d} t\;
+\big\langle \mathrm{FS}\big|c_i^\dagger c_j\big|\mathrm{FS}\big\rangle\,
+\big[\hat U^{-1}\big(-\partial_t - i\hat\epsilon\big)\hat U\big]_{ij},
+\qquad \hat U \equiv e^{i\hat\phi},
+\end{equation}
+with $\hat\epsilon$ the one-particle Hamiltonian
+($\hat H = c_i^\dagger \epsilon_{ij}c_j$). Introduce the one-particle density
+matrix (statistical matrix) of the ground state,
+\begin{equation}
+\label{eq:f0matrix}
+f_{0,ji} = \big\langle \mathrm{FS}\big|c_i^\dagger c_j\big|\mathrm{FS}\big\rangle,
+\end{equation}
+so that $E_0=\langle\mathrm{FS}|\hat H|\mathrm{FS}\rangle=\operatorname{Tr}(\hat f_0\hat\epsilon)$.
+The action becomes a single first-quantized trace,
+\begin{equation}
+\label{eq:Strace}
+S = \int \mathrm{d} t\;\operatorname{Tr}\!\big[\hat f_0\,\hat U^{-1}\big(i\partial_t-\hat\epsilon\big)\hat U\big]
+= \int \mathrm{d} t\;\operatorname{Tr}\!\big[\hat f_0\,\hat U^{-1} i\partial_t \hat U - \hat f\,\hat\epsilon\big],
+\qquad \hat f \equiv \hat U \hat f_0 \hat U^{-1},
+\end{equation}
+where the second form uses cyclicity,
+$\operatorname{Tr}[\hat f_0\hat U^{-1}\hat\epsilon\hat U]=\operatorname{Tr}[\hat f\,\hat\epsilon]$, and
+$\hat f$ (elements $\langle\Psi|c_i^\dagger c_j|\Psi\rangle$) is the one-particle
+density matrix of the coherent state.
+
+\subsection{Wigner transform to the phase-space action}
+
+Map first-quantized operators to phase-space symbols through the Wigner transform
+\begin{equation}
+\label{eq:wigner}
+\omega(\bm{x},\bm{p}) = \int \mathrm{d}^dy\; e^{i\bm{p}\cdot\bm y/\hbar}\,
+\big\langle \bm{x}-\tfrac{\bm y}{2}\big|\,\hat\omega\,\big|\bm{x}+\tfrac{\bm y}{2}\big\rangle .
+\end{equation}
+Two properties close the derivation. A trace becomes a phase-space integral,
+\begin{equation}
+\label{eq:trwigner}
+\operatorname{Tr}(\hat a\hat b) = \int \frac{\mathrm{d}^dx\,\mathrm{d}^dp}{(2\pi\hbar)^d}\, a(\bm{x},\bm{p})\,b(\bm{x},\bm{p}),
+\end{equation}
+and the symbol of a product is the star product of symbols (so the symbol of a
+commutator is $i$ times the Moyal bracket, $\eqref{eq:moyal}$). Applying these to
+\eqref{eq:Strace},
+\begin{equation}
+\label{eq:Sfinal}
+\boxed{\;
+S = \int \mathrm{d} t\int \frac{\mathrm{d}^dx\,\mathrm{d}^dp}{(2\pi\hbar)^d}\,
+\Big[\, f_0(\bm{x},\bm{p})\,U^{-1}\!\star i\partial_t U \;-\; f(\bm{x},\bm{p})\,\epsilon(\bm{p})\,\Big],
+\qquad f = U\star f_0\star U^{-1}\; }
+\end{equation}
+where $U(\bm{x},\bm{p})=\exp[i\phi(\bm{x},\bm{p})]$ is the Wigner symbol of $\hat U$. The first
+term is $\langle f_0,\,U^{-1}\!\star i\partial_t U\rangle = S_{\mathrm{WZW}}$ and the
+second is $-\langle f,\epsilon\rangle = S_H$, so \eqref{eq:Sfinal} is exactly the
+target action \eqref{eq:Saction}, with $f$ on the coadjoint orbit \eqref{eq:orbit}.
+This completes the derivation of the bosonized action from the free-fermion theory.
+
+\begin{remark}
+The two sections meet at the ground state. The first-quantized density matrix
+$\hat f_0$ of \eqref{eq:f0matrix} is the equal-time Fermi-sea projector $\hat n$ of
+\S\ref{sec:bridge}; its Wigner symbol is $f_0(\bm{x},\bm{p})=\Theta(p_F-|\bm{p}|)$, and the
+dispersion $\epsilon(\bm{p})$ here is the $\xi_{\bm{k}}$ of \S\ref{sec:prelim}. The
+$G$--$\Sigma$ fluctuations of \S\ref{sec:bridge} and the orbit coordinate
+$f=U\star f_0\star U^{-1}$ describe the same particle--hole physics from the two
+coherent-state representations; exhibiting their equality is the bridge the
+project constructs.
+\end{remark}
+
+\section*{Caveats}
+
+\begin{itemize}
+\item \textbf{Convention dependence.} The signs of $\Sigma$ and of the
+$\operatorname{Tr}(\Sigma G)$ term in \eqref{eq:gsigma}, and the explicit minus in $G_0^{-1}$
+\eqref{eq:G0inv}, are tied to the choices \eqref{eq:Gdef} and \eqref{eq:resolution}.
+Different references distribute these signs differently; only the Dyson equation
+and the saddle \eqref{eq:freesaddle} are invariant. Any comparison with
+\S\ref{sec:coadjoint} or with the literature must first align these conventions.
+\item \textbf{Regularization of $\operatorname{Tr}\ln$.} The functional determinant is
+UV-divergent; only the difference $\operatorname{Tr}\ln(G_0^{-1}+\Sigma)-\operatorname{Tr}\ln G_0^{-1}$ is
+finite, and equal-time objects such as the density require a point-splitting or
+frequency-sum prescription (the $e^{i\omega_n 0^+}$ convergence factor). These are
+left implicit above.
+\item \textbf{Measure and contour.} The bosonic measure $\mathcal{D}G\,\mathcal{D}\Sigma$
+and the imaginary contour for $\Sigma$ in \eqref{eq:resolution} are stated
+formally; a careful treatment (e.g.\ of the Jacobian from $\psi,\bar{\psi}$ to $G$) is
+not needed for the saddle structure but matters for fluctuation determinants.
+\item \textbf{The two sections use different coherent states.} \S\ref{sec:gsigma}
+is built on the Grassmann coherent state (yielding the bilocal $G$--$\Sigma$
+action); \S\ref{sec:coadjoint} on the group coherent state of the Fermi surface
+(yielding the coadjoint-orbit action). Both are exact rewritings of the same
+free-fermion theory, but their equality is \emph{not} demonstrated here --- it is
+the bridge the project constructs.
+\item \textbf{Real versus imaginary time.} \S\ref{sec:gsigma} is formulated in
+imaginary time (Matsubara), \S\ref{sec:coadjoint} in real time $t$, following the
+respective sources. Aligning the two --- including the $i\partial_t$ of the WZW
+term against the $\partial_\tau$ of the $\operatorname{Tr}\ln$ --- is part of the reconciliation,
+not assumed here.
+\item \textbf{Moyal versus Poisson.} Section~\ref{sec:coadjoint} keeps the full
+Moyal algebra; the Poisson-bracket form of the coadjoint action (e.g.\ in
+Delacr\'etaz--Else--Senthil) is its semiclassical truncation
+$\hbar\,\bm{\nabla}_{\bm{x}}\!\cdot\!\bm{\nabla}_{\bm{p}}\ll1$. The distinction is physical, not
+cosmetic: it is what allows the magnetic extension of the source paper to capture
+Landau-level degeneracy.
+\item \textbf{Normalization and total-derivative subtleties of the WZW term.} The
+overall normalization of $S_{\mathrm{WZW}}$, and a term linear in $\phi$ that is a
+total derivative in the infinite plane but becomes a topological $\theta$-term once
+the momentum-space directions are compact, are treated in the body of the source
+paper (the weak-field theory), not in the zero-field transcription here.
+\item \textbf{Regularization of the traces.} Both the $\operatorname{Tr}\ln$ of
+\S\ref{sec:gsigma} and the first-quantized $\operatorname{Tr}$ of \S\ref{sec:coadjoint} are over
+infinite single-particle Hilbert spaces and require the usual normal-ordering /
+point-splitting prescriptions for equal-time objects; these are left implicit.
+\end{itemize}
+
+\end{document}

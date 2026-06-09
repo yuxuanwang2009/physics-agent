@@ -1,0 +1,447 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title{From the Bilocal $G$--$\Sigma$ Action to the Coadjoint-Orbit Bosonization Action:\\
+A Step-by-Step Reduction and Its Status}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering
+\textbf{Status: plausible.}\\[4pt]
+This document does \emph{not} present a complete rigorous derivation. The reduction of the
+bilocal $G$--$\Sigma$ action to the coadjoint-orbit action \emph{closes in form}: the
+algebra that manufactures the Berry/Wess--Zumino and Hamiltonian terms is exact and
+independently checked. However, the bridge rests on \textbf{two uncontrolled steps},
+each made physically plausible but neither supplied with a controlled higher-order bound:
+\begin{enumerate}\itemsep1pt
+\item[(P1)] \textbf{Elimination of the self-energy $\Sigma$ by its Dyson saddle.} The
+relevant integral is genuinely non-Gaussian (it carries a $\det$ factor); a one-mode
+model shows the saddle returns the wrong leading dependence on $G$. It is rendered
+controlled only by introducing $N$ identical flavors, a parameter that is
+\emph{fictitious} for the genuine single-species Fermi gas. For one species the step is
+only plausible.
+\item[(P2)] \textbf{Restriction of the bilocal $G$ to the projector orbit.} The
+discarded transverse ``amplitude'' fluctuations lie in the \emph{same gapless}
+particle--hole continuum as the orbit modes; no spectral gap protects the truncation.
+The suppression is a semiclassical phase-space-measure (Haldane-patch) argument in
+$q/k_F\ll1$, made plausible but not bounded uniformly.
+\end{enumerate}
+Moreover, joint control of (P1) and (P2) by a single physical parameter $q/k_F$ is
+asserted, not proved. An \emph{exact} bridge is structurally foreclosed: any exact
+integration of the starting action trivializes it (see Step~1).}}
+\end{center}
+
+\bigskip
+
+\section{The two endpoints, with all conventions inlined}
+
+\subsection{Starting point: the bilocal $G$--$\Sigma$ action}
+
+We work with spinless nonrelativistic fermions in $d$ spatial dimensions at inverse
+temperature $\beta$, in the imaginary-time coherent-state path integral. A collective
+coordinate $1\equiv(\boldsymbol{x}_1,\tau_1)$ is used, with
+\[
+\int \mathrm{d}1 \coloneqq \int_0^\beta \mathrm{d}\tau_1\int \mathrm{d}^d x_1,
+\qquad
+\delta(1,2)\coloneqq \delta(\tau_1-\tau_2)\,\delta^d(\boldsymbol{x}_1-\boldsymbol{x}_2).
+\]
+The single-particle Hamiltonian is $\hat h=\varepsilon(-i\boldsymbol{\nabla})-\mu$ with
+$\xi_{\boldsymbol{k}}\coloneqq\varepsilon(\boldsymbol{k})-\mu$. Traces of bilocal kernels
+are $\operatorname{Tr}(AB)\coloneqq\int\mathrm{d}1\,\mathrm{d}2\,A(1,2)B(2,1)$, and
+$\operatorname{Tr}\ln$ is defined through its series. The free inverse propagator is the
+operator with kernel
+\[
+G_0^{-1}(1,2)\coloneqq-\big(\partial_{\tau_1}+\hat h_1\big)\,\delta(1,2),
+\qquad
+G_0(\boldsymbol{k},i\omega_n)=\frac{1}{i\omega_n-\xi_{\boldsymbol{k}}},
+\]
+on antiperiodic Matsubara frequencies $\omega_n=(2n+1)\pi/\beta$.
+
+Introducing the bosonic bilocal $G(1,2)$ together with a conjugate self-energy field
+$\Sigma(1,2)$ enforcing $G(1,2)=-\psi(1)\bar\psi(2)$, and integrating out the Grassmann
+fields exactly, yields the exact bosonic action
+\begin{equation}
+\label{eq:start}
+\boxed{\;
+S[G,\Sigma]=-\operatorname{Tr}\ln\!\big(G_0^{-1}+\Sigma\big)+\operatorname{Tr}(\Sigma G),
+\qquad
+\operatorname{Tr}(\Sigma G)\coloneqq\int\mathrm{d}1\,\mathrm{d}2\;\Sigma(2,1)\,G(1,2),\;}
+\end{equation}
+(the free case; any interaction adds $S_{\mathrm{int}}[G]$, set to zero here). Its
+saddle equations are the Dyson equation and the self-energy condition,
+\[
+G=\big(G_0^{-1}+\Sigma\big)^{-1},
+\qquad
+\Sigma=-\frac{\delta S_{\mathrm{int}}}{\delta G},
+\]
+so that for the free theory $\Sigma_\star=0$, $G_\star=G_0$. The content lies in the
+fluctuations of $G$ about $G_0$. At zero temperature and equal times the free propagator
+reduces to the occupation $n_{\boldsymbol{k}}\in\{0,1\}$, i.e. the single-particle operator
+$\hat n$ is a projector, $\hat n^2=\hat n$.
+
+\subsection{Proposed endpoint: the coadjoint-orbit action}
+
+Single-particle observables are functions $F(\boldsymbol{x},\boldsymbol{p})$ on phase space.
+Operator multiplication maps to the star product
+\begin{equation}
+\label{eq:star}
+F\star G=F\,\exp\!\Big(\tfrac{i\hbar}{2}\big(
+\overleftarrow{\partial}_{\boldsymbol{x}}\overrightarrow{\partial}_{\boldsymbol{p}}
+-\overleftarrow{\partial}_{\boldsymbol{p}}\overrightarrow{\partial}_{\boldsymbol{x}}\big)\Big)G,
+\end{equation}
+and commutators to the Moyal bracket
+\[
+\{F,G\}_{\mathrm{M}}=-i\big(F\star G-G\star F\big)
+=2F\,\sin\!\Big(\tfrac{\hbar}{2}\big(
+\overleftarrow{\partial}_{\boldsymbol{x}}\overrightarrow{\partial}_{\boldsymbol{p}}
+-\overleftarrow{\partial}_{\boldsymbol{p}}\overrightarrow{\partial}_{\boldsymbol{x}}\big)\Big)G.
+\]
+Distribution functions $f$ are paired with observables through
+\[
+\langle f,F\rangle\coloneqq\int\frac{\mathrm{d}^dx\,\mathrm{d}^dp}{(2\pi)^d}\,
+f(\boldsymbol{x},\boldsymbol{p})\,F(\boldsymbol{x},\boldsymbol{p}).
+\]
+In the semiclassical regime $\hbar\,\boldsymbol{\nabla}_{\boldsymbol{x}}\!\cdot\!
+\boldsymbol{\nabla}_{\boldsymbol{p}}\ll1$ the star product reduces to ordinary
+multiplication and the Moyal bracket to the Poisson bracket
+$\{F,G\}=\partial_{\boldsymbol{x}}F\!\cdot\!\partial_{\boldsymbol{p}}G
+-\partial_{\boldsymbol{p}}F\!\cdot\!\partial_{\boldsymbol{x}}G$. We set $\hbar=1$ except
+where shown.
+
+Canonical transformations $U=\exp(i\phi)$ act on a distribution by conjugation,
+$f=U\star f_0\star U^{-1}$, the coadjoint action through the Fermi-sea base point
+\[
+f_0(\boldsymbol{x},\boldsymbol{p})=\Theta\!\big(p_F-|\boldsymbol{p}|\big),
+\]
+the Wigner image of the equal-time projector $\hat n$. The proposed bosonized action of
+the noninteracting Fermi surface is
+\begin{equation}
+\label{eq:target}
+\boxed{\;
+S[f]=S_{\mathrm{WZW}}[f]+S_H[f],\qquad
+S_{\mathrm{WZW}}=\int\mathrm{d}t\,\big\langle f_0,\,U^{-1}\!\star i\partial_t U\big\rangle,
+\qquad
+S_H=-\int\mathrm{d}t\,\big\langle f,\,\epsilon(\boldsymbol{p})\big\rangle,\;}
+\end{equation}
+with $\epsilon(\boldsymbol{p})=\varepsilon(\boldsymbol{p})-\mu$ the $\xi_{\boldsymbol{k}}$
+above. $S_{\mathrm{WZW}}$ is the path integral of the Kirillov--Kostant--Souriau
+symplectic form on the orbit; its equation of motion is the collisionless quantum
+Boltzmann equation $\partial_t f=\{\epsilon,f\}_{\mathrm{M}}$.
+
+\medskip
+\noindent\textbf{Claim under test.} That \eqref{eq:start} reduces directly to
+\eqref{eq:target}. We now carry the reduction step by step, labeling each step
+\emph{exact}, \emph{controlled} (with named parameter and what is dropped), or
+\emph{plausible} (with the supporting argument), and stopping wherever a step ceases to
+be controlled.
+
+\section{The reduction}
+
+\subsection*{Step 0 --- The starting action (exact)}
+
+Equation \eqref{eq:start} is the exact bilocal action of the free theory; it is the
+object we transform. \textbf{Status: exact.}
+
+\subsection*{Step 1 --- Why no exact integration suffices (exact, structural)}
+
+In \eqref{eq:start} the bilocal $G$ appears \emph{only linearly}, through
+$\operatorname{Tr}(\Sigma G)$. Integrating $G$ first is therefore exact and produces a
+functional delta:
+\[
+\int\mathcal{D}G\;e^{-\operatorname{Tr}(\Sigma G)}\;\propto\;\prod_{1,2}\delta\!\big(\Sigma(2,1)\big)
+\quad\Longrightarrow\quad \Sigma=0,
+\qquad Z=e^{\operatorname{Tr}\ln G_0^{-1}}=Z_{\mathrm{free}}.
+\]
+\textbf{Status: exact}, and structurally decisive: \emph{any} exact elimination of either
+field returns the free partition function with no orbit action. The coadjoint action can
+therefore arise only from a \emph{saddle} in $\Sigma$ together with a \emph{restriction}
+of the domain of $G$. An exact bridge is foreclosed; the best attainable is a controlled
+saddle-plus-truncation.
+
+\subsection*{Step 2 --- Eliminating $\Sigma$ (P1; uncontrolled for one species)}
+
+Shift $M\coloneqq G_0^{-1}+\Sigma$ (Jacobian unity, exact). The $\Sigma$-integral becomes
+\[
+\int\mathcal{D}\Sigma\;e^{-S}=e^{\operatorname{Tr}(G_0^{-1}G)}\,I[G],
+\qquad
+I[G]=\int\mathcal{D}M\;e^{\operatorname{Tr}\ln M-\operatorname{Tr}(MG)}.
+\]
+The integrand carries the factor $\operatorname{Tr}\ln M$ (equivalently $\det M$): $I[G]$ is
+\emph{not Gaussian} and \emph{not} a linear Lagrange-multiplier integral. Its stationary
+point is the Dyson equation $M_\star=G^{-1}$, which gives the two-particle-irreducible
+functional
+\begin{equation}
+\label{eq:Seff}
+S_{\mathrm{eff}}[G]=\operatorname{Tr}\ln G-\operatorname{Tr}\!\big(G_0^{-1}G\big)+\text{const}.
+\end{equation}
+The fluctuations of $M$ about $G^{-1}$ are not negligible for a single species. A
+one-mode caricature ($\operatorname{Tr}\to$ scalar) is exact and damning:
+\[
+\int_0^\infty\! \mathrm{d}m\;e^{\ln m-mg}=\int_0^\infty\! \mathrm{d}m\;m\,e^{-mg}=g^{-2},
+\qquad\text{whereas the saddle gives}\quad e^{\ln g^{-1}-1}=g^{-1}e^{-1}.
+\]
+The fluctuations change the leading power $g^{-1}\!\to\! g^{-2}$; the saddle is therefore
+\emph{uncontrolled as written}.
+
+\medskip
+\noindent\emph{Controlled rescue (a different model).} With $N$ identical flavors and a
+flavor-singlet bilocal, $S\to N S$ and $I[G]=\int\mathcal{D}M\,e^{N(\operatorname{Tr}\ln M
+-\operatorname{Tr}MG)}$. The caricature becomes
+\[
+\int_0^\infty\!\mathrm{d}m\;e^{N(\ln m-mg)}=\frac{\Gamma(N+1)}{(Ng)^{N+1}}
+=\exp\!\big[\underbrace{-N\ln g-N}_{O(N)\text{ saddle}}+O(\ln N)\big],
+\]
+so the saddle reproduces the $O(N)$ action with remainder $O(\ln N/N)$. \textbf{Status:
+controlled for the $N$-flavor model} (small parameter $1/N$, dropping $O(\ln N/N)$),
+but \textbf{plausible at best for the genuine single-species Fermi gas}, where no such
+$N$ exists. The physical hope is that large local occupation per phase-space patch (Step~5)
+plays the role of large $N$; this is not established for the self-energy sector. We carry
+\eqref{eq:Seff} forward, flagging it as the weakest link.
+
+\subsection*{Step 3 --- Restriction to the projector orbit (P2; a restriction, not an identity)}
+
+We impose the ansatz that the low-energy configurations are images of the Fermi-sea
+projector under canonical transformations. As a two-time kernel,
+\begin{equation}
+\label{eq:orbitansatz}
+G=\hat U\,G_0\,\hat U^{-1},
+\qquad \hat U=\hat U(\tau)=e^{i\hat\phi(\tau)}\quad(\text{single-particle, time-local}),
+\end{equation}
+whose equal-time projection is $\hat U(\tau)\hat n\hat U^{-1}(\tau)=\hat f(\tau)$, matching
+$f=U\star f_0\star U^{-1}$. This is a \emph{restriction of the integration domain}, not an
+identity. A general fluctuation $\delta G$ about $G_0$ splits into orbit directions
+$\delta G_\parallel=[i\hat\phi,G_0]$ and transverse ``amplitude'' directions
+$\delta G_\perp$ that move occupation eigenvalues off $\{0,1\}$. The quadratic action from
+\eqref{eq:Seff},
+\[
+\delta^2 S_{\mathrm{eff}}=-\tfrac12\operatorname{Tr}\!\big(G_0^{-1}\,\delta G\,G_0^{-1}\,\delta G\big),
+\]
+is the inverse particle--hole propagator --- the linearized Lindhard/RPA kernel --- and
+\emph{both} $\delta G_\parallel$ and $\delta G_\perp$ inhabit the \emph{same gapless}
+particle--hole continuum. No spectral gap separates the orbit from its complement. The
+status of this restriction is assessed in Step~5; the algebra it enables (Step~4) is exact.
+
+\subsection*{Step 4 --- Exact reduction of $S_{\mathrm{eff}}$ on the orbit (exact)}
+
+Write $D\coloneqq\partial_\tau+\hat h$, so $G_0^{-1}=-D$ and $G_0=-D^{-1}$.
+
+\medskip
+\noindent\textbf{(4a) Entropy term.} By multiplicativity of $\ln\det$ under similarity,
+\[
+\operatorname{Tr}\ln\!\big(\hat U G_0\hat U^{-1}\big)=\operatorname{Tr}\ln G_0 .
+\]
+\textbf{Status: exact} for invertible time-local $\hat U$. (For $\tau$-dependent $\hat U$
+a regularization-dependent anomaly in $\operatorname{Tr}\ln$ can shift only the \emph{normalization}
+of the Berry term, never its form.) An independent finite-dimensional evaluation confirms
+$\operatorname{Tr}\ln G=\operatorname{Tr}\ln G_0$ to machine precision (residual $\sim10^{-11}$,
+pure floating-point roundoff in the log-determinant). The entropy term is thus inert on
+the orbit and carries no dependence on $\hat U$.
+
+\medskip
+\noindent\textbf{(4b) The kinetic/Hamiltonian term.} With the exact operator identity
+$D\hat U=\hat U D+[D,\hat U]$ and $[D,\hat U]=(\partial_\tau\hat U)+[\hat h,\hat U]$,
+\begin{equation}
+\label{eq:opid}
+D\hat U D^{-1}\hat U^{-1}=1+\big[(\partial_\tau\hat U)+[\hat h,\hat U]\big]D^{-1}\hat U^{-1}.
+\end{equation}
+Since $-\operatorname{Tr}(G_0^{-1}G)=-\operatorname{Tr}(D\hat U D^{-1}\hat U^{-1})$ and $D^{-1}=-G_0$,
+\begin{equation}
+\label{eq:twoterms}
+-\operatorname{Tr}\!\big(G_0^{-1}G\big)
+=-\operatorname{Tr}(1)
++\operatorname{Tr}\!\big((\partial_\tau\hat U)\,G_0\,\hat U^{-1}\big)
++\operatorname{Tr}\!\big([\hat h,\hat U]\,G_0\,\hat U^{-1}\big).
+\end{equation}
+Equations \eqref{eq:opid}--\eqref{eq:twoterms} are exact operator algebra; an independent
+finite-dimensional check finds the identity \eqref{eq:twoterms} to hold as a matrix
+identity (difference $=0$ exactly). \textbf{Status: exact.}
+
+\medskip
+\noindent\textbf{(4c) Equal-time collapse.} Each surviving trace has $G_0$ sandwiched
+between time-local factors, so $G_0(\tau,\tau)\to\hat f_0=\hat n$ under the standard $0^+$
+point-splitting. By cyclicity,
+\[
+\operatorname{Tr}\!\big((\partial_\tau\hat U)G_0\hat U^{-1}\big)
+=\int_0^\beta\!\mathrm{d}\tau\;\operatorname{tr}\!\big(\hat U^{-1}(\partial_\tau\hat U)\,\hat f_0\big),
+\]
+\[
+\operatorname{Tr}\!\big([\hat h,\hat U]G_0\hat U^{-1}\big)
+=\int_0^\beta\!\mathrm{d}\tau\;\big[\operatorname{tr}(\hat h\hat f)-\operatorname{tr}(\hat h\hat f_0)\big],
+\qquad \hat f=\hat U\hat f_0\hat U^{-1}.
+\]
+\textbf{Status: exact up to the equal-time prescription} (the point-splitting / $0^+$
+convention), which can affect only the Berry-term normalization. Collecting and dropping
+$\tau$-independent constants,
+\begin{equation}
+\label{eq:Sorbit}
+S_{\mathrm{eff}}\big|_{\text{orbit}}
+=\int_0^\beta\!\mathrm{d}\tau\;\operatorname{tr}\!\big(\hat f_0\,\hat U^{-1}\partial_\tau\hat U\big)
++\int_0^\beta\!\mathrm{d}\tau\;\operatorname{tr}\!\big(\hat h\,\hat f\big)+\text{const}.
+\end{equation}
+
+\medskip
+\noindent\textbf{(4d) Wick rotation.} With $\tau=it$, $\int\mathrm{d}\tau=i\int\mathrm{d}t$,
+$\partial_\tau=-i\partial_t$, and $-S_E=iS_{\mathrm{real}}$,
+\begin{equation}
+\label{eq:firstquant}
+\boxed{\;
+S_{\mathrm{real}}=\int\mathrm{d}t\;\operatorname{tr}\!\big(\hat f_0\,\hat U^{-1}i\partial_t\hat U\big)
+-\int\mathrm{d}t\;\operatorname{tr}\!\big(\hat f\,\hat h\big),
+\qquad \hat f=\hat U\hat f_0\hat U^{-1}.\;}
+\end{equation}
+This is the first-quantized form of the proposed action. The Berry/Wess--Zumino term
+descends from the $\partial_\tau$ in $G_0^{-1}$ (the Kirillov--Kostant--Souriau symplectic
+structure on the orbit through $\hat f_0$), and the Hamiltonian term from $\hat h$.
+\textbf{Status: exact}, modulo the (4a)/(4c) regularization caveats.
+
+\subsection*{Step 5 --- Wigner/Moyal map, and the honest status of the truncation}
+
+\noindent\textbf{(5a) Wigner transform (exact).} The Wigner transform
+\[
+\omega(\boldsymbol{x},\boldsymbol{p})=\int\mathrm{d}^dy\;e^{i\boldsymbol{p}\cdot\boldsymbol{y}/\hbar}\,
+\big\langle\boldsymbol{x}-\tfrac{\boldsymbol{y}}{2}\big|\,\hat\omega\,\big|\boldsymbol{x}+\tfrac{\boldsymbol{y}}{2}\big\rangle
+\]
+is an exact operator$\leftrightarrow$symbol isomorphism with
+$\operatorname{Tr}(\hat a\hat b)=\int\frac{\mathrm{d}^dx\,\mathrm{d}^dp}{(2\pi\hbar)^d}\,a\star b$
+and the symbol of a product equal to the star product \eqref{eq:star}. Applying it term by
+term to \eqref{eq:firstquant} gives, with $f=U\star f_0\star U^{-1}$ and
+$\int f\star\epsilon=\int f\,\epsilon$,
+\begin{equation}
+\label{eq:final}
+\boxed{\;
+S=\int\mathrm{d}t\int\frac{\mathrm{d}^dx\,\mathrm{d}^dp}{(2\pi\hbar)^d}
+\Big[\,f_0\,\big(U^{-1}\!\star i\partial_t U\big)-f\,\epsilon(\boldsymbol{p})\,\Big]
+=S_{\mathrm{WZW}}+S_H.\;}
+\end{equation}
+\textbf{Status: exact.} The transform retains the \emph{full Moyal star}, not its Poisson
+truncation, so this step requires no $\hbar\to0$; the nonlinear Moyal structure of
+\eqref{eq:target} is reproduced intact. This is exactly the proposed coadjoint-orbit
+action, with $f$ on the orbit through $f_0=\Theta(p_F-|\boldsymbol{p}|)$.
+
+\medskip
+\noindent\textbf{(5b) Status of the orbit restriction (P2; plausible, not controlled).}
+Steps 4--5a manufacture the target action exactly \emph{given} the ansatz
+\eqref{eq:orbitansatz}; the remaining question is the legitimacy of discarding
+$\delta G_\perp$. As noted in Step~3, these modes are not gapped away. The only available
+suppression is semiclassical/Haldane-patch counting: a coherent deformation of wavevector
+$q\ll k_F$ acts collectively on $N_{\mathrm{patch}}\sim(k_F/q)^{d-1}$ fermions, whereas an
+amplitude fluctuation is a single particle--hole excitation carrying relative weight
+$\sim 1/N_{\mathrm{patch}}\sim(q/k_F)^{d-1}$. This identifies the physical small parameter
+as $\hbar\,\boldsymbol{\nabla}_{\boldsymbol{x}}\!\cdot\!\boldsymbol{\nabla}_{\boldsymbol{p}}
+\sim q/k_F\ll1$ and matches the counting that controls Fermi-surface bosonization. It is a
+concrete, literature-backed argument, and it correctly reproduces the leading-order
+density response. \emph{But} because the modes are gapless, the suppression is a
+phase-space-measure effect, not an energetic gap, and no uniform higher-order bound on the
+$\delta G_\perp$ contribution to the action is supplied here. \textbf{Status: plausible,
+not controlled.}
+
+\medskip
+\noindent\textbf{(5c) Joint control (asserted).} The parameter $1/N$ that made Step~2
+controlled is fictitious for the single-species gas; the honest expectation is that the
+single physical parameter $q/k_F$ (large patch occupation) controls both the
+$\Sigma$-saddle (P1) and the off-orbit truncation (P2). A concrete patch-counting
+mechanism is given only for the orbit sector. That the same parameter bounds the
+self-energy fluctuations is \textbf{asserted, not proved.}
+
+\section{Summary of the chain}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{c l l}
+\hline
+Step & Content & Status\\
+\hline
+0 & starting bilocal action \eqref{eq:start} & exact\\
+1 & exact integration trivializes $\Rightarrow$ need saddle$+$restriction & exact (structural)\\
+2 & eliminate $\Sigma$ $\Rightarrow$ $S_{\mathrm{eff}}=\operatorname{Tr}\ln G-\operatorname{Tr}(G_0^{-1}G)$ & \textbf{P1}: controlled only with fictitious $1/N$; else plausible\\
+3 & restrict $G$ to projector orbit \eqref{eq:orbitansatz} & restriction (off-orbit modes gapless)\\
+4 & reduce on orbit to first-quantized \eqref{eq:firstquant} & exact (minor regularization caveats)\\
+5a & Wigner transform $\to$ Moyal action \eqref{eq:final} & exact (full Moyal, no $\hbar\to0$)\\
+5b & justify dropping $\delta G_\perp$ & \textbf{P2}: plausible ($q/k_F\ll1$), not controlled\\
+5c & joint control of P1 and P2 by one parameter & asserted, not proved\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent The term-manufacturing algebra (Steps 4--5a) is exact: the Berry/Wess--Zumino
+term is the Kirillov--Kostant--Souriau form descending from $\partial_\tau$ in $G_0^{-1}$,
+the Hamiltonian term descends from $\hat h$, and the full Moyal structure survives. The
+difficulty does \emph{not} live there. It lives entirely in the two eliminations:
+eliminating $\Sigma$ (P1) and restricting $G$ to the orbit (P2).
+
+\section{Caveats / status of approximations}
+
+\begin{itemize}
+\item \textbf{No exact bridge.} Step~1 shows that any exact integration of \eqref{eq:start}
+returns $Z_{\mathrm{free}}$ with no orbit action. The coadjoint-orbit action exists only as
+a \emph{saddle-plus-truncation}; ``exact'' is structurally foreclosed.
+
+\item \textbf{(P1) The $\Sigma$-elimination is the weakest link.} The integral
+$I[G]=\int\mathcal{D}M\,e^{\operatorname{Tr}\ln M-\operatorname{Tr}(MG)}$ is non-Gaussian; the
+one-mode model shows the Dyson saddle returns the wrong leading $G$-dependence
+($g^{-1}$ vs.\ exact $g^{-2}$). The $N$-flavor computation controls a \emph{different}
+theory ($O(\ln N/N)$ remainder) and does not transfer to one species. To promote this step
+one would need, in the single-species model, an explicit large prefactor $\lambda\gg1$ with
+the $\Sigma$-fluctuation correction bounded as $O(1/\lambda)$ --- concretely, the Gaussian
+fluctuation determinant of $\delta M$ about $G^{-1}$ \emph{on the orbit}, shown to be higher
+order in $q/k_F$. This is not done here.
+
+\item \textbf{(P2) The orbit restriction is the fundamental obstruction.} The transverse
+amplitude modes share the gapless particle--hole continuum with the orbit modes; their
+suppression is a phase-space-measure argument ($q/k_F\ll1$, $N_{\mathrm{patch}}\gg1$), not
+an energetic gap. To promote it one would need a uniform bound that the $\delta G_\perp$
+contribution to the action is $O\!\big((q/k_F)^{\#}\big)$ relative to the orbit terms; being
+a measure effect, not a gap, this is not supplied.
+
+\item \textbf{Joint control unestablished.} Promoting both P1 and P2 to controlled requires
+a single physical parameter $q/k_F$ to bound the self-energy sector and the off-orbit sector
+simultaneously, with explicit higher-order estimates. Only the orbit sector is argued
+concretely; the self-energy sector is, by the present reasoning, merely expected to follow.
+
+\item \textbf{Regularization.} The $\operatorname{Tr}\ln$ is UV-divergent; only the difference
+$\operatorname{Tr}\ln(G_0^{-1}+\Sigma)-\operatorname{Tr}\ln G_0^{-1}$ is finite, and equal-time
+objects (4c) require point-splitting / a $e^{i\omega_n 0^+}$ convergence factor. These
+prescriptions can shift the Wess--Zumino \emph{normalization} but not the form of
+\eqref{eq:final}.
+
+\item \textbf{Measure and contour.} The bosonic measure $\mathcal{D}G\,\mathcal{D}\Sigma$,
+the imaginary contour for $\Sigma$, and the Jacobian from $\psi,\bar\psi$ to $G$ are treated
+formally; they do not affect the saddle structure but matter for fluctuation determinants
+(hence for any attempt to control P1).
+
+\item \textbf{Real vs.\ imaginary time.} The starting action is in imaginary time; the target
+is in real time. The Wick rotation (4d) aligns the $\partial_\tau$ of the
+$\operatorname{Tr}\ln$ sector with the $i\partial_t$ of the Berry term; subtleties of contour
+and of total-derivative/$\theta$-terms in the Wess--Zumino term in compact momentum
+directions are not analyzed here.
+
+\item \textbf{Moyal vs.\ Poisson.} The Wigner map (5a) is exact and keeps the full Moyal
+algebra; the Poisson form is its semiclassical truncation
+$\hbar\,\boldsymbol{\nabla}_{\boldsymbol{x}}\!\cdot\!\boldsymbol{\nabla}_{\boldsymbol{p}}\ll1$.
+This distinction is physical and is preserved by the present route.
+\end{itemize}
+
+\noindent\textbf{Overall.} The reduction \emph{closes in form}: the bilocal $G$--$\Sigma$
+action yields the coadjoint-orbit action \eqref{eq:final} once $\Sigma$ is eliminated by its
+saddle and $G$ is restricted to the projector orbit. Both eliminations are supported by
+concrete physical arguments (large patch occupation / semiclassical $q/k_F$, with the
+$N$-flavor computation as partial evidence for the saddle), but neither is supplied with a
+controlled higher-order bound for the single-species Fermi gas, and their joint control is
+not proved. The derivation is therefore \emph{plausible}, not controlled or exact.
+
+\end{document}
