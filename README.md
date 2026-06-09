@@ -1,4 +1,4 @@
-# $G$–$\Sigma$ → Coadjoint-Orbit Bosonization: a Claim-Adjudication Agent
+# $G–\Sigma$ → Coadjoint-Orbit Bosonization: a Claim-Adjudication Agent
 
 A small multi-round LLM agent (built on the Anthropic API) that **adjudicates** a
 physics claim: whether the bilocal $G$–$\Sigma$ action of a free, gapless Fermi gas
