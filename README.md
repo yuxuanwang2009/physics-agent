@@ -1,7 +1,7 @@
 # $G–\Sigma$ → Coadjoint-Orbit Bosonization: a Claim-Adjudication Agent
 
 A small multi-round LLM agent (built on the Anthropic API) that **adjudicates** a
-physics claim: whether the bilocal $G$–$\Sigma$ action of a free, gapless Fermi gas
+physics claim: whether the bilocal $G-\Sigma$ action of a free, gapless Fermi gas
 reduces directly to the coadjoint-orbit bosonization action.
 
 The full problem — conventions, the two endpoint actions, and why their equality is
@@ -68,9 +68,9 @@ restriction up front — rather than overclaiming.
 
 The accepted derivation leans on a step the referee passes only as `plausible`:
 replacing $\Sigma$ by its (Dyson) saddle point to eliminate it. **That step is
-unnecessary.** A cleaner, exact argument exists: along the coadjoint orbit the
-$-\mathrm{Tr}\ln(G_0^{-1}+\Sigma)$ integral is *constant* (conjugation invariance
-of the determinant under the canonical transformation that generates the orbit), so the
+unnecessary.** A cleaner, exact argument exists: along the coadjoint orbit the functional integral
+$\int \mathcal{D}\tilde \Sigma e^{\mathrm{Tr}\ln(\tilde\Sigma) - \mathrm{Tr}(\tilde \Sigma G)}$
+is invariant under $G \to \hat U G_0 \hat U^{-1}$, so the
 conclusion follows regardless of $\Sigma$ — no saddle-point approximation required. The
 agent settled for the weaker route instead of finding this one; its verdict is
 defensible but its reasoning is not optimal. This is a real limitation, not a rendering
