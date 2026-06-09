@@ -7,7 +7,7 @@ reduces directly to the coadjoint-orbit bosonization action.
 The full problem — conventions, the two endpoint actions, and why their equality is
 nontrivial — lives in [`task_background.tex`](task_background.tex) (compiled:
 `task_background.pdf`). In brief: **Section 1** derives the exact bilocal action
-$S[G,\Sigma] = -\operatorname{Tr}\ln(G_0^{-1}+\Sigma) + \operatorname{Tr}(\Sigma G)$
+$S[G,\Sigma] = -\mathrm{Tr}\ln(G_0^{-1}+\Sigma) + \mathrm{Tr}(\Sigma G)$
 and its free saddle; **Section 2** writes down the proposed coadjoint-orbit action
 $S = S_{\mathrm{WZW}} + S_H$ — a Kirillov–Kostant–Souriau Berry term plus a Hamiltonian
 term, on the coadjoint orbit of canonical transformations through the Fermi-sea
@@ -52,7 +52,7 @@ human-readable `output/transcript.md` is emitted.
 ## Outcome
 
 The agent reconstructs the intended bridge — parametrise $G$ on the orbit of the
-Fermi-sea projector, use the conjugation-invariance of $-\operatorname{Tr}\ln$, and
+Fermi-sea projector, use the conjugation-invariance of $-\mathrm{Tr}\ln$, and
 Wigner–Moyal-map the result to recover the KKS/WZW Berry term and the Hamiltonian term
 — and then, correctly, **declines to call it exact**. It pins the binding obstruction
 to the **restriction of $G$ to the coadjoint orbit**: the clean Fermi surface is
@@ -69,7 +69,7 @@ restriction up front — rather than overclaiming.
 The accepted derivation leans on a step the referee passes only as `plausible`:
 replacing $\Sigma$ by its (Dyson) saddle point to eliminate it. **That step is
 unnecessary.** A cleaner, exact argument exists: along the coadjoint orbit the
-$-\operatorname{Tr}\ln(G_0^{-1}+\Sigma)$ integral is *constant* (conjugation invariance
+$-\mathrm{Tr}\ln(G_0^{-1}+\Sigma)$ integral is *constant* (conjugation invariance
 of the determinant under the canonical transformation that generates the orbit), so the
 conclusion follows regardless of $\Sigma$ — no saddle-point approximation required. The
 agent settled for the weaker route instead of finding this one; its verdict is
